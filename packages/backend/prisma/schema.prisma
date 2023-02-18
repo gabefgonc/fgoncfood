@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./db.sqlite"
+}
+
+model User {
+  id          String  @id @default(uuid())
+  name        String
+  email       String?
+  phoneNumber String?
+  password    String
+}
+
+model Restaurant {
+  id           String @id @default(uuid())
+  name         String
+  phoneNumber  String
+  email        String
+  location_lat Float
+  location_lng Float
+}
