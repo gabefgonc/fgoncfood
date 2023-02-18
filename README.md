@@ -24,10 +24,15 @@ Food delivery app to test my fullstack development knowledge.
 ### Built With
 
 Next.js
+
 Tailwind
+
 Express
+
 Prisma
+
 Zod
+
 TypeScript
 
 ## Features
@@ -41,6 +46,7 @@ TypeScript
 ## Acknowledgements
 
 (Blog Post I Read to setup the MonoRepo)[https://blog.logrocket.com/build-full-stack-typescript-application-turborepo/]
+
 (Blog Post I Read to setup Typescript and Express)[https://blog.logrocket.com/how-to-set-up-node-typescript-express/]
 
 <!-- TODO: List any blog posts, tutorials or plugins that you may have used to complete the project. Only list those that had a significant impact. Obviously, we all 'Google' stuff while working on our things, but maybe something in particular stood out as a 'major contributor' to your skill set for this project. -->
