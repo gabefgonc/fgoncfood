@@ -2,10 +2,14 @@ import { CreateUserDTO, UpdateUserDTO } from 'types';
 import { SerializableUser } from '../../types/user';
 import { IUsersRepository } from '../IUsersRepository';
 import { prisma } from '../../db/prisma';
+import { hash } from 'bcrypt';
 
 export class PrismaUsersRepository implements IUsersRepository {
   async create(data: CreateUserDTO): Promise<SerializableUser> {
-    const user = await prisma.user.create({ data });
+    const passwordHash = await hash(data.password, 10);
+    const user = await prisma.user.create({
+      data: { ...data, password: passwordHash },
+    });
     const serializable = { ...user, password: undefined };
     return serializable;
   }
