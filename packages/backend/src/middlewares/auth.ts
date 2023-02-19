@@ -1,8 +1,8 @@
 import { NextFunction, RequestHandler, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 import { JwtPayload } from 'types';
-import { env } from '../../env';
-import { RequestWithUserID } from '../../types/request';
+import { env } from '../env';
+import { RequestWithUserID } from '../types/request';
 
 export const protectedRoute = (
   req: RequestWithUserID,
