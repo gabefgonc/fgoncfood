@@ -3,6 +3,7 @@ import { SerializableUser } from '../../types/user';
 import { IUsersRepository } from '../IUsersRepository';
 import { prisma } from '../../db/prisma';
 import { hash } from 'bcrypt';
+import { User } from '@prisma/client';
 
 export class PrismaUsersRepository implements IUsersRepository {
   async create(data: CreateUserDTO): Promise<SerializableUser> {
@@ -21,6 +22,27 @@ export class PrismaUsersRepository implements IUsersRepository {
     const serializable = { ...result, password: undefined };
     return serializable;
   }
+
+  async findByEmailOrPhoneNumber(identity: {
+    phoneNumber?: string | undefined;
+    email?: string | undefined;
+  }): Promise<User | null> {
+    let user: User | null = null;
+    let found = false;
+    if (identity.phoneNumber) {
+      user = await prisma.user.findFirst({
+        where: { phoneNumber: identity.phoneNumber },
+      });
+      found = true;
+    }
+    if (identity.email && !found) {
+      user = await prisma.user.findFirst({
+        where: { email: identity.email },
+      });
+    }
+    return user;
+  }
+
   async deleteByID(id: string): Promise<void> {
     await prisma.user.delete({ where: { id } });
   }

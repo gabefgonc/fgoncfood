@@ -16,4 +16,8 @@ app.get('/users/:id', async (req, res) => {
   await findOneUserController.handle(req, res);
 });
 
+app.post('/auth/signin', async (req, res) => {
+  await 
+})
+
 export { app };
