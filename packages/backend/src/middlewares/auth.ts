@@ -1,4 +1,4 @@
-import { NextFunction, RequestHandler, Response } from 'express';
+import { NextFunction, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 import { JwtPayload } from 'types';
 import { env } from '../env';

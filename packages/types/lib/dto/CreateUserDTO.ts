@@ -7,9 +7,12 @@ export const createUserDTO = z
       .min(1, 'you should provide a name')
       .max(50, 'your name should be less than 50 characters long'),
     phoneNumber: z
-      .string({ required_error: 'you should provide a phone number' })
-      .min(10, 'Your phone number should be at least 10 characters long')
-      .max(50, 'your phone number should be less than 50 characters long')
+      .string()
+      .regex(
+        /^\(?(?:[14689][1-9]|2[12478]|3[1234578]|5[1345]|7[134579])\)? ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$/,
+        'You should provide a valid phone number'
+      )
+      .trim()
       .optional(),
     email: z
       .string({ required_error: 'you should provide an e-mail address' })

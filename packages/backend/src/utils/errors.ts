@@ -19,6 +19,10 @@ export class RecordNotFoundError extends BackendError {
   statusCode = 404;
 }
 
+export class RecordAlreadyExistsError extends BackendError {
+  statusCode = 409;
+}
+
 export class AuthorizationError extends BackendError {
   statusCode = 401;
 }

@@ -8,15 +8,18 @@ datasource db {
 }
 
 model User {
-  id          String  @id @default(uuid())
+  id          String      @id @default(uuid())
   name        String
   email       String?
   phoneNumber String?
   password    String
+  restaurant  Restaurant?
 }
 
 model Restaurant {
   id           String @id @default(uuid())
+  owner        User   @relation(fields: [ownerId], references: [id])
+  ownerId      String @unique
   name         String
   phoneNumber  String
   email        String
